@@ -17,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex items-start justify-between`}>
+      
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
