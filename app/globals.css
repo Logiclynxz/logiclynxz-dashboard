@@ -60,7 +60,9 @@
     --chart-5: 340 75% 55%;
   }
 }
-
+.router-link-exact-active{
+  color:aquamarine;
+}
 .logo-font{
   font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
