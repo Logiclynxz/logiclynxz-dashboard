@@ -9,18 +9,18 @@ export default function Home() {
   return (
     <main className="relative  w-full">
       <Image
-      src="/greenpattern.png"
-      alt="greenpattern"
-      width={300}
-      height={300}
-      className="absolute  animate-spins lg:left-[30%] left-5 bottom-20 opacity-60 lg:bottom-[20%] -z-10"
+        src="/greenpattern.png"
+        alt="greenpattern"
+        width={300}
+        height={300}
+        className="absolute  animate-spins lg:left-[30%] left-5 bottom-20 opacity-60 lg:bottom-[20%] -z-10"
       />
       <Image
-      src="/redstar.png"
-      alt="redstar"
-      width={20}
-      height={100}
-      className="absolute lg:right-80 right-[15%] top-[10%] opacity-60 lg:top-10 lg:bottom-0 -z-10"
+        src="/redstar.png"
+        alt="redstar"
+        width={20}
+        height={100}
+        className="absolute lg:right-80 right-[15%] top-[10%] opacity-60 lg:top-10 lg:bottom-0 -z-10"
       />
       {/* <div className="absolute bg-blue-400 h-[400px] lg:h-[450px] w-full -z-10 -bottom-5 blur-[2px] " ></div> */}
       <div className="container w-full h-full">
@@ -29,7 +29,7 @@ export default function Home() {
           <LoginForm />
         </div>
       </div>
-      <LoginFooter/>
+      <LoginFooter />
     </main>
   );
 }
