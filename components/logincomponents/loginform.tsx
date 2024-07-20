@@ -8,7 +8,7 @@ import { ModeToggle } from "../ui/ModeToggle";
 export default function LoginForm() {
   return (
     <div className="w-[500px]">
-      <Card className=" border-b-4 border-b-blue-400  p-4 py-[50px] lg:p-[50px] md:p-[50px] bg-transparent backdrop-blur-[10px] backdrop-brightness-[98%]">
+      <Card className=" border-b-8 border-b-blue-400  p-4 py-[50px] lg:p-[50px] md:p-[50px] bg-transparent backdrop-blur-[10px] backdrop-brightness-[98%]">
         <h1 className="text-[25px] font-bold text-center my-4 logo-font">
           LOGICLYNXZ
         </h1>
