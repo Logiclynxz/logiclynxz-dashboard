@@ -11,6 +11,8 @@ export default function LoginNav() {
         priority /> */}
           Logo
         </div>
+        <ModeToggle/>
+
         {/* <ModeToggle /> */}
       </div>
     );

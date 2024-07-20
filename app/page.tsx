@@ -13,7 +13,7 @@ export default function Home() {
       alt="greenpattern"
       width={300}
       height={300}
-      className="absolute lg:left-[30%] left-5 bottom-20 opacity-60 lg:bottom-[20%] -z-10"
+      className="absolute  animate-spins lg:left-[30%] left-5 bottom-20 opacity-60 lg:bottom-[20%] -z-10"
       />
       <Image
       src="/redstar.png"

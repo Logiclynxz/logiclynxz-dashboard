@@ -67,6 +67,15 @@
   font-weight: 800;
   font-style: normal;
 }
+
+@keyframes spins {
+  to {
+      transform: rotate(360deg);
+  }
+}
+.animate-spins {
+  animation: spins 150s linear infinite;
+}
 @layer base {
   * {
     @apply border-border;

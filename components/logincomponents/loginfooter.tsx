@@ -1,6 +1,6 @@
 export default function LoginFooter() {
     return (
-        <footer className="   w-full  h-full p-4 bg-blue-400 ">
+        <footer className="   w-full  h-full p-4  ">
             <div className="flex lg:justify-between justify-center container">
                 <div className="lg:flex gap-2 hidden ">
                     <div className="h-[20px] w-[20px] bg-green-300 rounded-full drop-shadow-lg"></div>
