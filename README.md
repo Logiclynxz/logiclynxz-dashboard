@@ -4,11 +4,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Clone a branch
 
-```git clone https://github.com/Logiclynxz/logiclynxz-dashboard.git -b dev```
+```bash
+git clone https://github.com/Logiclynxz/logiclynxz-dashboard.git -b dev
+```
 
 ## npm install
 
-```npm install```
+```bash
+npm install
+```
 
 Then, run the development server:
 
