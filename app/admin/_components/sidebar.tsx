@@ -1,52 +1,49 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../../components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { LogOut, Package2 } from "lucide-react";
+import Image from "next/image";
 import SidebarMenu from "./ui/sidebarmenu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { LogOut, Menu, Package2 } from "lucide-react";
 import Link from "next/link";
 
 export default function Sidebar() {
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="shrink-0 md:hidden">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle navigation menu</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col">
-        <nav className="grid gap-2 text-lg font-medium">
-          <Link
-            href="#"
-            className="flex items-center gap-2 text-lg font-semibold"
-          >
+    <div className="hidden border-r bg-muted/40 md:block">
+      <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+          <Link href="/" className="flex items-center gap-2 font-semibold">
             <Package2 className="h-6 w-6" />
-            <span className="sr-only">Acme Inc</span>
+            <span className="text-[20px] font-bold text-center my-1 logo-font">
+              LOGICLYNXZ
+            </span>
           </Link>
-
+        </div>
+        <div className="flex-1 px-3 ">
+          <Card className="flex p-2 gap-2 my-4">
+            <Image
+              src="/profile.png"
+              alt="userprofile"
+              width={50}
+              height={50}
+              className="rounded-lg border"
+            />
+            <div>
+              <h6 className="font-semibold">Pablo E. Jab</h6>
+              <small>Main Role Ni Niya</small>
+            </div>
+          </Card>
           <SidebarMenu />
-        </nav>
-        <div className="mt-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle>Test</CardTitle>
-              <CardDescription>test</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button size="sm" className="w-full">
+        </div>
+        <div className="mt-auto p-4">
+          <Card x-chunk="dashboard-02-chunk-0">
+            <CardContent className="p-3">
+              <Button className="w-full">
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>
             </CardContent>
           </Card>
         </div>
-      </SheetContent>
-    </Sheet>
+      </div>
+    </div>
   );
 }

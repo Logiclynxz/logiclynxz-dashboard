@@ -1,18 +1,18 @@
 "use client";
 
-import { LogOut, Menu, Package2, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 
 import Notification from "./ui/notification";
-import Sidebar from "./sidebar";
 import MiniSidebar from "./minisidebar";
+import SidebarResponsive from "./sidebarresponsive";
 
 export default function Header() {
   return (
-    <header className="flex h-14 items-center gap-2 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
-      <Sidebar />
+    <header className="flex h-14 items-center gap-2 border-b bg-muted/40 px-4 lg:h-[65px] md:h-[60px] lg:px-6">
+      <SidebarResponsive />
       <div className="w-full flex-1">
         <form>
           <div className="relative">
