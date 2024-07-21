@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { LogOut, Menu, Package2 } from "lucide-react";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function SidebarResponsive() {
   return (
@@ -35,11 +36,29 @@ export default function SidebarResponsive() {
         <div className="mt-auto">
           <Card>
             <CardHeader>
-              <CardTitle>Test</CardTitle>
-              <CardDescription>test</CardDescription>
+              <div className="flex  gap-2">
+                <Avatar className="w-[50px] h-[50px]">
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                {/* <Image
+              src="/profile.png"
+              alt="userprofile"
+              width={50}
+              height={50}
+              className="rounded-lg border"
+            /> */}
+                <div>
+                  <h6 className="font-semibold">Pablo Jab</h6>
+                  <small>Main Role Ni Niya</small>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
-              <Button size="sm" className="w-full">
+              <Button
+                size="sm"
+                className="w-full bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] "
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>

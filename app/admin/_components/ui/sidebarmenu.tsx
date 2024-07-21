@@ -1,7 +1,14 @@
 "use client";
 
 import { Command, CommandGroup, CommandList } from "@/components/ui/command";
-import { FolderKanban, Info, LayoutDashboard } from "lucide-react";
+import {
+  ClipboardList,
+  FolderKanban,
+  Info,
+  LayoutDashboard,
+  Mail,
+  User,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function SidebarMenu() {
@@ -24,44 +31,24 @@ export default function SidebarMenu() {
         text: "Dashboard",
       },
       {
-        link: "/about",
-        icon: <Info size={20} />,
-        text: "About",
-      },
-      {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
+        link: "/",
+        icon: <ClipboardList size={20} />,
         text: "Projects",
       },
       {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
-        text: "Projects",
+        link: "/",
+        icon: <User size={20} />,
+        text: "Members",
       },
       {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
-        text: "Projects",
+        link: "/",
+        icon: <Mail size={20} />,
+        text: "Messages",
       },
       {
-        link: "/projects",
+        link: "/",
         icon: <FolderKanban size={20} />,
-        text: "Projects",
-      },
-      {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
-        text: "Projects",
-      },
-      {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
-        text: "Projects",
-      },
-      {
-        link: "/projects",
-        icon: <FolderKanban size={20} />,
-        text: "Projects",
+        text: "File Managers",
       },
     ],
   };
@@ -82,8 +69,10 @@ export default function SidebarMenu() {
                 href={option.link}
                 onClick={() => handleClick(option.link)}
               >
-                {option.icon}
-                {option.text}
+                <div className="flex gap-2 items-center">
+                  {option.icon}
+                  {option.text}
+                </div>
               </a>
             ))}
           </CommandGroup>

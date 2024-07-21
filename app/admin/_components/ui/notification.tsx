@@ -46,8 +46,8 @@ export default function Notification() {
                 }`}
               ></div>
               <div className="">
-                <p>{item.text}</p>
-                <p className="text-xs text-neutral-500">{item.date}</p>
+                <div>{item.text}</div>
+                <div className="text-xs text-neutral-500">{item.date}</div>
               </div>
             </DropdownMenuItem>
           ))}
