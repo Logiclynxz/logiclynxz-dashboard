@@ -1,20 +1,50 @@
-import Sidebar from "@/app/admin/_components/sidebar";
-import Header from "./_components/ui/header";
-import MiniSidebar from "./_components/ui/minisidebar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
-export default function page() {
+export function Test() {
   return (
-    <div className="w-full h-full">
-      <Sidebar />
-      <main className="w-full h-full ">
-        <Header />
-        <MiniSidebar />
-        <div className="p-5 pt-[40px] ">
-          <div className="lg:pl-[300px] lg:pr-[320px] md:pl-[310px] md:pr-[320px] mt-10 p-2 h-[110vh] ">
-            <div className="bg-blue-800">asd</div>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when youre done.
+          </SheetDescription>
+        </SheetHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input id="username" value="@peduarte" className="col-span-3" />
           </div>
         </div>
-      </main>
-    </div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button type="submit">Save changes</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }
