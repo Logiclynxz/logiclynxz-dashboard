@@ -4,7 +4,7 @@ import Image from "next/image";
 import SidebarMenu from "./ui/sidebarmenu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function Sidebar() {
   return (
     <div className="hidden border-r bg-muted/40 md:block">
@@ -18,25 +18,29 @@ export default function Sidebar() {
           </Link>
         </div>
         <div className="flex-1 px-3 ">
-          <Card className="flex p-2 gap-2 my-4">
-            <Image
+          <Card className="flex p-2 gap-2 my-4 rounded-full">
+            <Avatar className="w-[50px] h-[50px]">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            {/* <Image
               src="/profile.png"
               alt="userprofile"
               width={50}
               height={50}
               className="rounded-lg border"
-            />
+            /> */}
             <div>
-              <h6 className="font-semibold">Pablo E. Jab</h6>
+              <h6 className="font-semibold">Pablo Jab</h6>
               <small>Main Role Ni Niya</small>
             </div>
           </Card>
           <SidebarMenu />
         </div>
         <div className="mt-auto p-4">
-          <Card x-chunk="dashboard-02-chunk-0">
+          <Card x-chunk="dashboard-02 -chunk-0">
             <CardContent className="p-3">
-              <Button className="w-full">
+              <Button className="w-full bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] ">
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>
