@@ -1,4 +1,4 @@
-import { ModeToggle } from "../ui/ModeToggle";
+import { ModeToggle } from "../../../components/ui/ModeToggle";
 
 export default function LoginNav() {
   return (

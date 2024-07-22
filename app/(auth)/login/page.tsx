@@ -1,8 +1,8 @@
-import LoginFooter from "@/components/logincomponents/loginfooter";
-import LoginForm from "@/components/logincomponents/loginform";
-import LoginNav from "@/components/logincomponents/loginnav";
+import LoginForm from "../_component/loginform";
+import LoginNav from "../_component/loginnav";
 import { ModeToggle } from "@/components/ui/ModeToggle";
 import Image from "next/image";
+import LoginFooter from "../_component/loginfooter";
 
 export default function Home() {
   return (

@@ -26,27 +26,27 @@ export default function SidebarMenu() {
   const navList = {
     items: [
       {
-        link: "/admin",
+        link: "/",
         icon: <LayoutDashboard size={20} className="hover:animate-spin" />,
         text: "Dashboard",
       },
       {
-        link: "/",
+        link: "/projects",
         icon: <ClipboardList size={20} />,
         text: "Projects",
       },
       {
-        link: "/",
+        link: "/members",
         icon: <User size={20} />,
         text: "Members",
       },
       {
-        link: "/",
+        link: "/messages",
         icon: <Mail size={20} />,
         text: "Messages",
       },
       {
-        link: "/",
+        link: "/file",
         icon: <FolderKanban size={20} />,
         text: "File Managers",
       },
