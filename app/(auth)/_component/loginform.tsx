@@ -6,6 +6,8 @@ import { Button } from "../../../components/ui/button";
 import { ModeToggle } from "../../../components/ui/ModeToggle";
 
 export default function LoginForm() {
+  //?  ADD CHECKS IF LOGGED IN GO TO '/'
+
   async function create(formData: FormData) {
     "use server";
     console.log(formData);
