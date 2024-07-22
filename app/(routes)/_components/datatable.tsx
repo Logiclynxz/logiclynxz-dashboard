@@ -40,45 +40,46 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { CardHeader } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    project: 721,
+    project: "721",
     member: "failed",
-    progress: "asdasd",
+    progress: "30%",
     status: "pending",
     timeleft: "1 day left",
   },
   {
     id: "3u1reuv4",
-    project: 721,
+    project: "722",
     member: "failed",
-    progress: "asdasd",
+    progress: "40%",
     status: "pending",
     timeleft: "1 day left",
   },
   {
     id: "derv1ws0",
-    project: 721,
+    project: "723",
     member: "failed",
-    progress: "asdasd",
+    progress: "50%",
     status: "pending",
     timeleft: "1 day left",
   },
   {
     id: "5kma53ae",
-    project: 721,
-    member: "failed",
-    progress: "asdasd",
+    project: "724",
+    member: "Hambre, Engracia, Butnande, Pasok, Tagaan",
+    progress: "60%",
     status: "pending",
     timeleft: "1 day left",
   },
   {
     id: "bhqecj4p",
-    project: 721,
+    project: "725",
     member: "failed",
-    progress: "asdasd",
+    progress: "70%",
     status: "pending",
     timeleft: "1 day left",
   },
@@ -86,8 +87,8 @@ const data: Payment[] = [
 
 export type Payment = {
   id: string;
-  project: number;
-  member: "pending" | "processing" | "success" | "failed";
+  project: string;
+  member: string;
   progress: string;
   status: "pending" | "processing" | "success" | "failed";
   timeleft: string;
@@ -117,14 +118,14 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "Projets",
-    header: "Projets",
+    accessorKey: "project",
+    header: "Projects",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("project")}</div>
     ),
   },
   {
-    accessorKey: "Members",
+    accessorKey: "member",
     header: ({ column }) => {
       return (
         <Button
@@ -136,33 +137,44 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("member")}</div>
-    ),
+    cell: ({ row }) => {
+      const members = (row.getValue("member") as string)
+        .split(",")
+        .map((member: string) => member.trim());
+      return (
+        <div className="capitalize">
+          {members.map((member, index) => (
+            <h6 key={index}>{member}</h6>
+          ))}
+        </div>
+      );
+    },
   },
+
   {
-    accessorKey: "Progress",
-    header: () => <div className="text-right">Progress</div>,
+    accessorKey: "progress",
+    header: () => <div className="text-left">Progress</div>,
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("progress")}</div>
     ),
   },
   {
-    accessorKey: "Status",
-    header: () => <div className="text-right">Status</div>,
+    accessorKey: "status",
+    header: () => <div className="text-left">Status</div>,
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("status")}</div>
     ),
   },
   {
-    accessorKey: "TimeLeft",
-    header: () => <div className="text-right">TimeLeft</div>,
+    accessorKey: "timeleft",
+    header: () => <div className="text-left">TimeLeft</div>,
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("timeleft")}</div>
     ),
   },
   {
     id: "actions",
+    header: () => <div className="text-left">Actions</div>,
     enableHiding: false,
     cell: ({ row }) => {
       const payment = row.original;
@@ -228,10 +240,12 @@ export function DataTable() {
         </CardHeader>
         <div className="flex flex-col md:flex-row gap-2">
           <Input
-            placeholder="Filter emails..."
-            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            placeholder="Filter project..."
+            value={
+              (table.getColumn("project")?.getFilterValue() as string) ?? ""
+            }
             onChange={(event) =>
-              table.getColumn("email")?.setFilterValue(event.target.value)
+              table.getColumn("project")?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
           />
