@@ -15,7 +15,7 @@ import Image from "next/image";
 
 export default function CardTask() {
   return (
-    <Card className=" dark:bg-[#0e1421] bg-[#fafbfb]  min-h-[410px]">
+    <Card className=" dark:bg-[#0e1421] bg-[#fafbfb]  min-h-[410px] relative">
       <CardHeader>
         <div className="">
           <AspectRatio ratio={16 / 9}>
@@ -67,7 +67,7 @@ export default function CardTask() {
           </div>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="static lg:absolute bottom-0 w-full">
         <Button className="w-full  bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] ">
           Go To Detail
         </Button>
