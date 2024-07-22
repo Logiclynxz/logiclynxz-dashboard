@@ -16,13 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
-import {
-  CalendarDays,
-  ClipboardCheck,
-  ClipboardList,
-  Ellipsis,
-  Plus,
-} from "lucide-react";
+import { ClipboardCheck, ClipboardList, Ellipsis } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -38,7 +32,7 @@ export default function CardMember() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
-            <div>
+            <div className="">
               <h6 className="font-semibold">Pablo Jab</h6>
               <small>Main Role Ni Niya</small>
             </div>
@@ -85,21 +79,21 @@ export default function CardMember() {
             <Image
               className="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
               src="/test.jpg"
-              alt=""
+              alt="sd"
               width={30}
               height={30}
             />
             <Image
               className="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
               src="/profile.png"
-              alt=""
+              alt="sd"
               width={30}
               height={30}
             />
             <Image
               className="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
               src="/test.jpg"
-              alt=""
+              alt="sd"
               width={30}
               height={30}
             />
@@ -109,7 +103,7 @@ export default function CardMember() {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="absolute bottom-0 w-full">
+      <CardFooter className="static lg:absolute bottom-0 w-full">
         <Button className="w-full bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] ">
           View Member
         </Button>
