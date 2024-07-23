@@ -1,17 +1,37 @@
-import { Label } from "@radix-ui/react-label";
+"use client";
 import { Card } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Checkbox } from "../../../components/ui/checkbox";
 import { Button } from "../../../components/ui/button";
-import { ModeToggle } from "../../../components/ui/ModeToggle";
+import { useAuth } from "@/hooks/useAuth";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-  async function create(formData: FormData) {
-    "use server";
-    console.log(formData);
-    console.log(formData.get("email"));
-    console.log(formData.get("password"));
-  }
+  const { login, loading } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrorLogin(null);
+
+    try {
+      const response = await login(username, password);
+      if (response.success) {
+        console.log("Login successful");
+        router.push("/");
+      } else {
+        // Handle login failure
+        setErrorLogin(response.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setErrorLogin("An error occurred during login");
+    }
+  };
 
   return (
     <div className="w-[500px]">
@@ -19,13 +39,15 @@ export default function LoginForm() {
         <h1 className="text-[25px] font-bold text-center my-4 logo-font">
           LOGICLYNXZ
         </h1>
-        <form action={create}>
+        <form onSubmit={handleLogin}>
           <Input
             type="email"
             id="email"
             placeholder="Email"
             name="email"
             className="my-4"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Input
             type="password"
@@ -33,6 +55,8 @@ export default function LoginForm() {
             name="password"
             placeholder="Password"
             className="my-4"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex items-center space-x-2 my-4">
             <Checkbox id="terms" />
@@ -44,7 +68,14 @@ export default function LoginForm() {
             </label>
           </div>
 
-          <Button className="w-full bg-blue-400">Login</Button>
+          <Button
+            className="w-full bg-blue-400"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Loading ..." : "Login"}
+          </Button>
+          <p>{errorLogin}</p>
         </form>
 
         <hr className="border-b border-black my-4 dark:border-white" />
