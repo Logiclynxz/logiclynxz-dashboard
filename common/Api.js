@@ -5,11 +5,12 @@ import axios from 'axios';
 class Api {
   constructor() {
     this.axios = axios.create({
-      baseURL: process.env.API_BASE_URL,
+      baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
       headers: {
         'Content-Type': 'application/json',
       },
       timeout: 10000,
+      withCredentials: true,
     });
   }
 
@@ -18,21 +19,11 @@ class Api {
   }
 
   async getAuth() {
-
     try {
-      const token = cookies().get('accessToken');
-      if (token) {
-        this.setAuthToken(token);
-      }
-
-      const response = await this.axios.get('/api/login/checkAuth', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await this.axios.get('/api/login/checkAuths');
 
       if (response.status === 200) {
-        return response;
+        return response.data;
       } else {
         throw new Error('Could not connect to the authentication service');
       }
@@ -40,6 +31,33 @@ class Api {
       return e?.response || e.message;
     }
   }
+
+  async login(usernameEmail, password) {
+    try {
+      const response = await this.axios.post('/api/auth/login/', { usernameEmail, password });
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error('Login failed');
+      }
+    } catch (e) {
+      return e?.response || e.message;
+    }
+  }
+
+  async logout() {
+    try {
+      const response = await this.axios.get('/api/auth/logout/');
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error('Logout failed');
+      }
+    } catch (e) {
+      return e?.response || e.message;
+    }
+  }
+
 }
 
 export default new Api;

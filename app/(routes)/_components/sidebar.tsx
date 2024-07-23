@@ -5,6 +5,8 @@ import SidebarMenu from "./ui/sidebarmenu";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import SidebarLogout from "./sidebarLogout";
+
 export default function Sidebar() {
   return (
     <div className="hidden border-r bg-muted/40 md:block">
@@ -40,10 +42,7 @@ export default function Sidebar() {
         <div className="mt-auto p-4">
           <Card x-chunk="dashboard-02 -chunk-0">
             <CardContent className="p-3">
-              <Button className="w-full bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] ">
-                <LogOut className="mr-2 h-4 w-4" />
-                Logout
-              </Button>
+              <SidebarLogout />
             </CardContent>
           </Card>
         </div>
