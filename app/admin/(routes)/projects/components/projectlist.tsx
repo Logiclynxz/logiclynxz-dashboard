@@ -10,19 +10,21 @@ export default function ProjectList() {
                 <h3 className="text-lg font-semibold">Text</h3>
                 <p className="text-sm text-muted-foreground">Another Test</p>
             </div>
-            <Button className="bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] text-white">
-                + Add Project
-            </Button>
+            <a href="/admin/projects/new">
+                <Button className="bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] text-white">
+                    + Add Project
+                </Button>
+            </a>
         </div>
 
-        <div className="flex grid grid-cols-1">
-            <div className="flex-none w-14 ">
+        <div className="flex gap-2">
+            <div>
                 <Button>asd</Button>
             </div>
-            <div className="flex-auto w-14 ">
+            <div>
                 <Button>asd</Button>
             </div>
-            <div className="flex-auto w-14 ">
+            <div>
                 <Button>asd</Button>
             </div>
         </div>
