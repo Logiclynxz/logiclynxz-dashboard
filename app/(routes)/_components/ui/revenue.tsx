@@ -14,6 +14,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { useEffect } from "react";
 const chartData = [
   { month: "January", Earn: 2, Client: 1 },
   { month: "February", Earn: 3, Client: 2 },
@@ -38,7 +39,24 @@ const chartConfig = {
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
+
 export function Revenue() {
+  // bypass
+  useEffect(() => {
+    const originalConsoleError = console.error;
+
+    console.error = (...args: any[]) => {
+      if (typeof args[0] === "string" && /defaultProps/.test(args[0])) {
+        return;
+      }
+
+      originalConsoleError(...args);
+    };
+
+    return () => {
+      console.error = originalConsoleError;
+    };
+  }, []);
   return (
     <Card className="h-full w-full dark:bg-[#0e1421] bg-[#fafbfb]">
       <CardHeader>
