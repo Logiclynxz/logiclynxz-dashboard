@@ -15,6 +15,18 @@ export default function ProjectList() {
             </Button>
         </div>
 
+        <div className="flex grid grid-cols-1">
+            <div className="flex-none w-14 ">
+                <Button>asd</Button>
+            </div>
+            <div className="flex-auto w-14 ">
+                <Button>asd</Button>
+            </div>
+            <div className="flex-auto w-14 ">
+                <Button>asd</Button>
+            </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -ml-2 mt-10">
             <div className="px-1">
                 <ProjectCards/>
