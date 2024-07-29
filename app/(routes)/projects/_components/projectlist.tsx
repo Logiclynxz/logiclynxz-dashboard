@@ -2,6 +2,31 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import ProjectCards from "./projectcards";
 
+let projectData = [
+  {
+    id: "e46e5546-5cf7-4cac-ae16-4d5468bcf729", // sample UUID
+    image: "background.jpg",
+    category: "Web Development",
+    task: {
+      ongoing: 100,
+      completed: 20,
+    },
+    name: "Logiclynxz",
+    members: ["test.jpg", "profile.jpg", "test.jpg"],
+  },
+  {
+    id: "f56e7789-6b78-4dac-af16-5e789bcf7321", // another sample UUID
+    image: "background.jpg",
+    category: "Mobile Development",
+    task: {
+      ongoing: 50,
+      completed: 10,
+    },
+    name: "Tech Innovations",
+    members: ["test.jpg", "profile.jpg", "test.jpg"],
+  },
+];
+
 export default function ProjectList() {
   return (
     <div>
