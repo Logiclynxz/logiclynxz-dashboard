@@ -14,9 +14,7 @@ export default function HomeLayout({
       <Sidebar />
       <div className="flex flex-col h-screen">
         <Header />
-        <main className="grid grid-cols-5 grid-row-10 flex-2 flex-col gap-4 p-4 lg:gap-6 lg:p-6 overflow-auto h-full">
-          {children}
-        </main>
+        {children}
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
-import React from "react";
+import ProjectList from "./_components/projectlist";
 
-const hello = () => {
-  return <>hello</>;
-};
-
-export default hello;
+export default async function projects() {
+  return (
+    <div>
+      <ProjectList />
+    </div>
+  );
+}

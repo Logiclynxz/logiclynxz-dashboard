@@ -31,7 +31,7 @@ export default function SidebarMenu() {
         text: "Dashboard",
       },
       {
-        link: "/admin/projects",
+        link: "/projects",
         icon: <ClipboardList size={20} />,
         text: "Projects",
       },

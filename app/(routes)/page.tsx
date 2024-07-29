@@ -11,7 +11,7 @@ export default async function page() {
   // CONDITION IF NOT LOGGED IN GO TO /login
 
   return (
-    <>
+    <main className="grid grid-cols-5 grid-row-10 flex-2 flex-col gap-4 p-4 lg:gap-6 lg:p-6 overflow-auto h-full">
       <div className="col-span-5 md:col-span-2 lg:col-span-1  row-span-1 w-full ">
         <div className="h-full row-span-2">
           <RunningTask />
@@ -34,6 +34,6 @@ export default async function page() {
       <div className="col-span-5 h-[50vh] w-full ">
         <DataTable />
       </div>
-    </>
+    </main>
   );
 }
