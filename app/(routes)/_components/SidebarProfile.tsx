@@ -13,8 +13,18 @@ const SidebarProfile = () => {
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <div>
-        <h6 className="font-semibold">{`${user?.firstName} ${user?.lastName}`}</h6>
-        <small>{user?.role}</small>
+        {user ? (
+          <>
+            <h6 className="font-semibold">{`${user?.firstName} ${user?.lastName}`}</h6>
+            <small>{user?.role}</small>
+          </>
+        ) : (
+          // loading
+          <>
+            <h6 className="font-semibold">Fetching ....</h6>
+            <small>Fetching ....</small>
+          </>
+        )}
       </div>
     </Card>
   );
