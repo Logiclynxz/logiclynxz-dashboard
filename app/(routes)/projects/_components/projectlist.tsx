@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
 import ProjectCards from "./projectcards";
+import ButtonCategory from "./buttoncategory";
 
 let projectData = [
   {
@@ -12,7 +14,7 @@ let projectData = [
       completed: 20,
     },
     name: "Logiclynxz",
-    members: ["test.jpg", "profile.jpg", "test.jpg"],
+    members: ["test.jpg", "profile.png", "test.jpg"],
   },
   {
     id: "f56e7789-6b78-4dac-af16-5e789bcf7321", // another sample UUID
@@ -20,14 +22,31 @@ let projectData = [
     category: "Mobile Development",
     task: {
       ongoing: 50,
-      completed: 10,
+      completed: 20,
     },
     name: "Tech Innovations",
-    members: ["test.jpg", "profile.jpg", "test.jpg"],
+    members: ["test.jpg", "profile.png", "test.jpg"],
+  },
+  {
+    id: "f56e7789-6b78-4dac-af16-5e789bcf7321", // another sample UUID
+    image: "background.jpg",
+    category: "Mobile Development",
+    task: {
+      ongoing: 50,
+      completed: 8,
+    },
+    name: "Tech Innovations",
+    members: ["test.jpg", "profile.png", "test.jpg"],
   },
 ];
 
 export default function ProjectList() {
+  const [category, setCategory] = useState("All");
+
+  const filterData =
+    category === "All"
+      ? projectData
+      : projectData.filter((cat) => cat.category == category);
   return (
     <div>
       <div className="flex justify-between">
@@ -41,38 +60,10 @@ export default function ProjectList() {
           </Button>
         </a>
       </div>
+      <ButtonCategory setter={setCategory} />
 
-      <div className="flex gap-2 mt-5">
-        <div>
-          <Button>All</Button>
-        </div>
-        <div>
-          <Button>Mobile Development</Button>
-        </div>
-        <div>
-          <Button>Web Development</Button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -ml-2 mt-5">
-        <div className="px-1">
-          <ProjectCards />
-        </div>
-        <div className="px-1">
-          <ProjectCards />
-        </div>
-        <div className="px-1">
-          <ProjectCards />
-        </div>
-        <div className="px-1">
-          <ProjectCards />
-        </div>
-        <div className="px-1">
-          <ProjectCards />
-        </div>
-        <div className="px-1">
-          <ProjectCards />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 -ml-2 mt-5 px-1">
+        <ProjectCards data={filterData} />
       </div>
     </div>
   );
