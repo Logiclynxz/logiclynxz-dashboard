@@ -14,7 +14,7 @@ export default function ButtonLink(props: ButtonProps) {
       <Button
         className="w-full bg-[rgb(54,98,227)] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4]"
         onClick={() => {
-          router.push(`/task/${id}`);
+          router.push(`/projects/task/${id}`);
         }}
       >
         View Task
