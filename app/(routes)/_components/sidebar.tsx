@@ -1,11 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { LogOut, Package2 } from "lucide-react";
-import Image from "next/image";
+import { Package2 } from "lucide-react";
 import SidebarMenu from "./ui/sidebarmenu";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SidebarLogout from "./sidebarLogout";
+import SidebarProfile from "./SidebarProfile";
 
 export default function Sidebar() {
   return (
@@ -20,23 +18,7 @@ export default function Sidebar() {
           </Link>
         </div>
         <div className="flex-1 px-3 ">
-          <Card className="flex p-2 gap-2 my-4 rounded-full">
-            <Avatar className="w-[50px] h-[50px]">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            {/* <Image
-              src="/profile.png"
-              alt="userprofile"
-              width={50}
-              height={50}
-              className="rounded-lg border"
-            /> */}
-            <div>
-              <h6 className="font-semibold">Pablo Jab</h6>
-              <small>Main Role Ni Niya</small>
-            </div>
-          </Card>
+          <SidebarProfile />
           <SidebarMenu />
         </div>
         <div className="mt-auto p-4">
