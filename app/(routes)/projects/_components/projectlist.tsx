@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import ProjectCards from "./projectcards";
 import ButtonCategory from "./buttoncategory";
+import PageHeader from "@/components/ui/header";
 
 let projectData = [
   {
@@ -50,10 +51,10 @@ export default function ProjectList() {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold">Text</h3>
-          <p className="text-sm text-muted-foreground">Another Test</p>
-        </div>
+        <PageHeader
+          title="Projects"
+          description="A list of projects from the clients"
+        />
         <a href="/projects/new">
           <Button className="bg-[#3662e3] dark:text-white dark:hover:bg-[#0d1b44] hover:bg-[#5da3f4] text-white">
             + Add Project
