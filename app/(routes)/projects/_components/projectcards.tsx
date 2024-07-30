@@ -18,22 +18,7 @@ import { ClipboardCheck, ClipboardList, Ellipsis, Percent } from "lucide-react";
 import Image from "next/image";
 import ButtonLink from "./buttonlink";
 import Link from "next/link";
-
-interface Taskinterface {
-  ongoing: number;
-  completed: number;
-}
-interface DataProps {
-  id: string;
-  image: string;
-  // category: "All" | "Web Development" | "Mobile Development";
-  task: Taskinterface;
-  members: string[];
-  name: string;
-}
-interface ProjectCardProps {
-  data: DataProps[];
-}
+import { ProjectCardProps } from "@/types/ProjectcardTypes";
 
 const ProjectCards = (props: ProjectCardProps) => {
   const { data } = props;
@@ -41,6 +26,7 @@ const ProjectCards = (props: ProjectCardProps) => {
     const totalTask = ongoing;
     return totalTask > 0 ? (completed / totalTask) * 100 : 0;
   };
+
   return (
     <>
       {data.map((info, index) => (
@@ -87,7 +73,9 @@ const ProjectCards = (props: ProjectCardProps) => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem>
-                      <Link href={`/projects/view`}>View Project</Link>
+                      <Link href={`/projects/view/${info.id}`}>
+                        View Project
+                      </Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
