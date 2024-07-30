@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { ClipboardCheck, ClipboardList, Ellipsis, Percent } from "lucide-react";
 import Image from "next/image";
 import ButtonLink from "./buttonlink";
+import Link from "next/link";
 
 interface Taskinterface {
   ongoing: number;
@@ -85,7 +86,9 @@ const ProjectCards = (props: ProjectCardProps) => {
                     <Ellipsis />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem>View Project</DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link href={`/projects/view`}>View Project</Link>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
