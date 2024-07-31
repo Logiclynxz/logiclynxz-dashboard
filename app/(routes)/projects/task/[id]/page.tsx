@@ -38,12 +38,11 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="col-span-3 flex items-center justify-between">
         <div className="flex-col">
           <PageHeader title="Tasks" />
-          <Link
-            href={`/projects/view/${id}`}
-            className="text-sm text-muted-foreground"
-          >
-            <p>View Project Details</p>
-          </Link>
+          <Button variant="link" className="px-0 text-blue-400">
+            <Link href={`/projects/view/${id}`}>
+              <p>View Project Details</p>
+            </Link>
+          </Button>
         </div>
 
         {/* Filter or selection component */}
