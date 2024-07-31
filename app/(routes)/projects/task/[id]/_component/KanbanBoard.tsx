@@ -226,7 +226,7 @@ const SimpleBoard: React.FC = () => {
                             <div className="flex gap-3">
                               <div className="font-medium">{task.content}</div>
                               {hoveredTaskId === task.id && (
-                                <button className="p-1 rounded hover:bg-slate-500 transition-transform duration-300 ease-in-out">
+                                <button className="p-1 rounded text-black hover:text-white hover:bg-slate-500 transition-transform duration-300 ease-in-out">
                                   <Ellipsis size="16" />
                                 </button>
                               )}
