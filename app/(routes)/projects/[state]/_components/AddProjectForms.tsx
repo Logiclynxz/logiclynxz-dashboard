@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import ProjectCards from "../../_components/projectcards";
 import {
@@ -40,6 +39,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
+import { formatDateRange } from "@/lib/utils";
+
 // sample data for the preview
 let projectData = [
   {
@@ -61,6 +63,8 @@ const AddProjectForms = () => {
     to: undefined,
   });
   const [image, setImage] = useState<string | null>(null);
+  const router = useRouter();
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -78,18 +82,7 @@ const AddProjectForms = () => {
   const handleDateChange = (range: any) => {
     setSelectedRange(range);
   };
-  // Format the selected date range
-  const formatDateRange = (range: {
-    from: Date | undefined;
-    to: Date | undefined;
-  }) => {
-    if (range.from && range.to) {
-      const formattedFrom = format(range.from, "MMM dd, yyyy");
-      const formattedTo = format(range.to, "MMM dd, yyyy");
-      return `${formattedFrom} - ${formattedTo}`;
-    }
-    return "Pick a date range";
-  };
+
   const clearDateRange = () => {
     setSelectedRange({ from: undefined, to: undefined });
   };
@@ -102,7 +95,12 @@ const AddProjectForms = () => {
       <div className="mx-auto grid flex-1 auto-rows-max gap-4">
         {/* header */}
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="icon" className="h-7 w-7">
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-7 w-7"
+            onClick={() => router.push("/projects")}
+          >
             <ChevronLeftIcon className="h-4 w-4" />
             <span className="sr-only">Back</span>
           </Button>
@@ -111,7 +109,7 @@ const AddProjectForms = () => {
           </h1>
           <Badge
             variant="outline"
-            className="ml-auto sm:ml-0 bg-green-400 text-black"
+            className="ml-auto sm:ml-0 bg-green-300 text-black"
           >
             Creating
           </Badge>
@@ -299,7 +297,7 @@ const AddProjectForms = () => {
               <CardHeader>
                 <CardTitle>Upload Images</CardTitle>
                 <CardDescription>
-                  Use this feature to upload images for the project.
+                  The image will be used as a background in the card
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -344,8 +342,7 @@ const AddProjectForms = () => {
               <CardHeader>
                 <CardTitle>Project Overview</CardTitle>
                 <CardDescription>
-                  Detailed view of the selected project's information and
-                  status.
+                  Detailed view of the clients project's task and documentation.
                 </CardDescription>
               </CardHeader>
               <CardContent>

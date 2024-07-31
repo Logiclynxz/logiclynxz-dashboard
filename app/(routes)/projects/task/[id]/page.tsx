@@ -1,4 +1,3 @@
-import DynamicBreadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -16,7 +15,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -26,7 +24,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Archive, Ellipsis, MoveHorizontalIcon, Trash } from "lucide-react";
+import { Archive, Ellipsis, SettingsIcon, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -49,7 +47,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
 
         {/* Filter or selection component */}
-        <div className="flex items-center space-x-4 ">
+        <div className="flex items-center space-x-4">
           <Select>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select member" />
@@ -62,6 +60,12 @@ export default async function Page({ params }: { params: { id: string } }) {
               </SelectGroup>
             </SelectContent>
           </Select>
+
+          {/* Settings button */}
+          <Button variant="outline" size="icon">
+            <SettingsIcon className="h-4 w-4" />
+            <span className="sr-only">Settings</span>
+          </Button>
         </div>
       </div>
 
@@ -96,7 +100,12 @@ export default async function Page({ params }: { params: { id: string } }) {
             <CardContent className="grid gap-2 py-2">
               <div className="flex items-center space-x-3">
                 <div>
-                  <div className="font-medium">Finish wireframes</div>
+                  <div className="flex gap-2 items-center">
+                    <div className="font-medium">Finish wireframes</div>
+                    <button className="p-1 rounded hover:bg-slate-500 ">
+                      <Ellipsis size="16" />
+                    </button>
+                  </div>
                   <p className="text-sm text-muted-foreground">
                     Complete the initial wireframes for the new homepage design.
                   </p>
