@@ -1,28 +1,17 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   DragDropContext,
   Droppable,
   Draggable,
   DropResult,
 } from "@hello-pangea/dnd";
-import { Card } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"; // Update with actual path
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Ellipsis, Trash, Archive } from "lucide-react"; // Update with actual icons
 import { DataTypes } from "@/types/TaskTypes"; // Import interfaces
 import { Button } from "@/components/ui/button";
 
@@ -111,7 +100,55 @@ const initialData: DataTypes = {
 
 const SimpleBoard: React.FC = () => {
   const [data, setData] = useState<DataTypes>(initialData);
-  const [hoveredTaskId, setHoveredTaskId] = useState<string | null>(null);
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const actionMenuRef = useRef<HTMLDivElement | null>(null);
+
+  //** Out focus the selectedTask
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        actionMenuRef.current &&
+        !actionMenuRef.current.contains(event.target as Node)
+      ) {
+        setSelectedTaskId(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleTaskClick = (taskId: string) => {
+    setSelectedTaskId(taskId);
+  };
+
+  const handleDelete = () => {
+    if (selectedTaskId) {
+      console.log("Deleting task:", selectedTaskId);
+      setSelectedTaskId(null);
+      data.columnOrder.map((columnId) => {
+        const column = data.columns[columnId];
+        // Create a new data object with updated task IDs
+        const updatedColumns = { ...data.columns };
+
+        // Update each column with the new task IDs
+        Object.keys(updatedColumns).forEach((columnId) => {
+          const column = updatedColumns[columnId];
+          updatedColumns[columnId] = {
+            ...column,
+            taskIds: column.taskIds.filter((id) => id !== selectedTaskId),
+          };
+        });
+
+        // Update the state with the new data
+        setData({
+          ...data,
+          columns: updatedColumns,
+        });
+      });
+    }
+  };
 
   useEffect(() => {
     console.log(data);
@@ -172,99 +209,80 @@ const SimpleBoard: React.FC = () => {
         return (
           <Droppable key={column.id} droppableId={column.id}>
             {(provided) => (
-              <Card>
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="shadow-md h-full"
-                >
-                  <div className="flex items-center justify-between px-4 py-3 border-b">
-                    <h2 className="text-lg font-medium">{column.title}</h2>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="ml-auto">
-                          <Ellipsis size="16" />
-                          <span className="sr-only">Toggle menu</span>
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Items</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                          <DropdownMenuItem className="text-red-500 ">
-                            <Trash className="mr-2 h-4 w-4" />
-                            <span>Delete All</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Archive className="mr-2 h-4 w-4" />
-                            <span>Archive All</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuGroup>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                  <div className="p-4 grid gap-4">
-                    {tasks.map((task, index) => (
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className={`bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md transition-transform duration-300 ease-in-out ${
-                              hoveredTaskId === task.id
-                                ? "ring-2 ring-blue-500 transform scale-105"
-                                : "transform scale-100"
-                            }`}
-                            onMouseEnter={() => setHoveredTaskId(task.id)}
-                            onMouseLeave={() => setHoveredTaskId(null)}
-                          >
-                            <div className="flex gap-3">
-                              <div className="font-medium">{task.content}</div>
-                              {hoveredTaskId === task.id && (
-                                <button className="p-1 rounded text-black hover:text-white hover:bg-slate-500 transition-transform duration-300 ease-in-out">
-                                  <Ellipsis size="16" />
-                                </button>
-                              )}
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className="shadow-md h-full"
+              >
+                <div className="flex items-center justify-between px-4 py-3 border-b">
+                  <h2 className="text-lg font-medium">{column.title}</h2>
+                </div>
+                <div className="p-4 grid gap-4">
+                  {tasks.map((task, index) => (
+                    <Draggable
+                      key={task.id}
+                      draggableId={task.id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={`bg-white dark:bg-gray-800 p-4 items-center rounded-lg shadow-md transition-transform duration-300 ease-in-out ${
+                            selectedTaskId === task.id
+                              ? "ring-2 ring-blue-500 transform scale-105"
+                              : "transform scale-100"
+                          }`}
+                          onClick={() => handleTaskClick(task.id)}
+                        >
+                          <div className="font-medium text-sm">
+                            {task.content}
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <div className="text-sm text-muted-foreground">
+                              Due: {task.dueDate}
                             </div>
-                            <div className="flex justify-between items-center">
-                              <div className="text-sm text-muted-foreground">
-                                Due: {task.dueDate}
-                              </div>
-                              <div className="flex justify-between items-center py-1">
-                                <TooltipProvider>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <img
-                                        src="/profile.png" // Replace with actual avatar URL
-                                        alt="Profile"
-                                        className="w-8 h-8 rounded-full border border-gray-300"
-                                      />
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <p>{task.assignedTo}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
-                              </div>
+                            <div className="flex justify-between items-center py-1">
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <img
+                                      src="/profile.png" // Replace with actual avatar URL
+                                      alt="Profile"
+                                      className="w-8 h-8 rounded-full border border-gray-300"
+                                    />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>{task.assignedTo}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
                             </div>
                           </div>
-                        )}
-                      </Draggable>
-                    ))}
-
-                    {provided.placeholder}
-                  </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
                 </div>
-              </Card>
+              </div>
             )}
           </Droppable>
         );
       })}
+
+      {/* Action Menu Component */}
+      {selectedTaskId && (
+        <div ref={actionMenuRef} className="fixed bottom-4 right-12">
+          <Button
+            className="text-red-500 hover:text-red-700"
+            onClick={handleDelete}
+          >
+            Delete Task
+          </Button>
+        </div>
+      )}
     </DragDropContext>
   );
 };
